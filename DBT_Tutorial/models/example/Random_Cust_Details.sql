@@ -6,5 +6,6 @@
 -- Try changing 'view' to 'table', then re-running dbt
 {{ config(materialized='view') }}
 
-
-select 1 as id
+SELECT * FROM raw_customers
+ORDER BY UUID_STRING()
+LIMIT 1
