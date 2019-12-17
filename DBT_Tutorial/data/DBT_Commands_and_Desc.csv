@@ -1,0 +1,17 @@
+﻿DBT Commands,Description,Comments
+dbt init <project_name>,To create a project in dbt,NULL
+dbt compile,To compile all models,NULL
+dbt compile --models <modle_name>,To compile particular model,Name of file name inside models/analysis folders
+dbt run ,To run all models,NULL
+dbt run --models <model_name>,To run particular model,Name of file name inside models folder
+dbt test,"To do schema test,data test at a time",NULL
+dbt test --schema,To do all the schema test,NULL
+dbt test --schema --modles <model_name>,To do particular schema test,Name of file name inside the models folder
+dbt test --data,To do all the data test,NULL
+dbt test --data --models <model_name>,To do particular data test,Name of file name inside the tests folder
+dbt seed,To load data to the table in Snowflake,Have to configure in dbt_project.yml file and should have file in data folder
+dbt snapshot,To do snapshot the table,Have create a source. Should have file in snapshot folder
+dbt docs generate,To generate project document,It creates JSON file for models
+dbt docs serve,To get the folders and lineage graph,Here lineage graph will make easy for us to check conectivity between models
+dbt run --full-refresh,To refresh all the increamental models,NULL
+dbt run --full-refresh --models <model_name>,To refresh the particular increamental models,NULL
