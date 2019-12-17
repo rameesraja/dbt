@@ -9,4 +9,3 @@ GROUP BY User_ID
 select c.NumberOfOrders,r.first_name,r.last_name
 from cte c join raw_customers r
 on c.User_ID = r.id
-
