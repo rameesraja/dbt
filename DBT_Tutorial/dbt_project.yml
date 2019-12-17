@@ -33,5 +33,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_package:
       # Applies to all files under models/example/
-      example:
-          materialized: view
+    Level_1_Basics:
+        materialized: view
+    Level_2_How To Create Models Using Macros:
+        materialized: view
