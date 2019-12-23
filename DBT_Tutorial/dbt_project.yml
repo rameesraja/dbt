@@ -2,12 +2,12 @@
 # Name your package! Package names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_package'
+name: 'VBI_Training'
 version: '1.0'
 
 # This setting configures which "profile" dbt uses for this project. Profiles contain
 # database connection information, and should be configured in the  ~/.dbt/profiles.yml file
-profile: 'New_Project'
+profile: 'visualbi'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that source models can be found
@@ -31,9 +31,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as views (the default). These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  my_new_package:
+  VBI_Training:
       # Applies to all files under models/example/
     Level_1_Basics:
         materialized: view
     Level_2_How To Create Models Using Macros:
+        materialized: view
+    Level_3_How_to_use_Jinja_statements:
         materialized: view
