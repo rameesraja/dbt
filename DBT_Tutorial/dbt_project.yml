@@ -7,7 +7,7 @@ version: '1.0'
 
 # This setting configures which "profile" dbt uses for this project. Profiles contain
 # database connection information, and should be configured in the  ~/.dbt/profiles.yml file
-profile: 'visualbi'
+profile: 'vbi_training'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that source models can be found
@@ -33,9 +33,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   VBI_Training:
       # Applies to all files under models/example/
-    Level_1_Basics:
+    Level_1_How_To_Create_Models:
         materialized: view
-    Level_2_How To Create Models Using Macros:
+    Level_2_How_To_Create_Models_Using_Macros:
         materialized: view
     Level_3_How_to_use_Jinja_statements:
         materialized: view
+    Level_5_How_to_use_sources:
+        materialized: view
+
+on-run-start:
+    - "{{ callProcedure() }}"        
