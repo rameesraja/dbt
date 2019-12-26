@@ -39,8 +39,16 @@ models:
         materialized: view
     Level_3_How_to_use_Jinja_statements:
         materialized: view
+        vars:
+            my_model_variable : 'Model Variable'
     Level_5_How_to_use_sources:
         materialized: view
+        
+    vars:
+        my_package_variable : 'Package Variable'
+  vars:
+    my_global_variable: 'Global Variable'     
 
 on-run-start:
-    - "{{ callProcedure() }}"        
+     - "{{ callProcedure() }}"
+     - "{{ printFlags() }}"
