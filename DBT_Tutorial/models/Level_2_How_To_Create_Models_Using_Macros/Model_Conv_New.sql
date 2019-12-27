@@ -1,3 +1,3 @@
 {{ config(materialized='table') }}
 select {{ ConIntVar('ID') }}
-from TT
+from raw_payments
