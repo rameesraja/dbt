@@ -30,6 +30,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/ directory
 # as views (the default). These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
+snapshots:
+  VBI_Training:
+    transient: false
+    post-hook: "grant select on {{ this }} to SYSADMIN"
 models:
   VBI_Training:
       # Applies to all files under models/example/
@@ -43,12 +47,16 @@ models:
             my_model_variable : 'Model Variable'
     Level_5_How_to_use_sources:
         materialized: view
+    Level_6_Snapshot_and_Materializations:
+        materialized: view
         
     vars:
         my_package_variable : 'Package Variable'
   vars:
     my_global_variable: 'Global Variable'     
 
-on-run-start:
-     - "{{ callProcedure() }}"
-     - "{{ printFlags() }}"
+# on-run-start:
+#      - "{{ callProcedure() }}"
+#      - "{{ printFlags() }}"
+#      - "{{ jsonConversions() }}"
+#      - "{{ UsingStatements() }}"
