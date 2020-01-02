@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: RAMEES
+    database: DBT_WORKSHOP_BATCH_1
+    schema: RAMEES
+    tables:
+      - name: raw_customers
+        description: "Raw table for customers"
+        columns: 
+          - name: id
+            description : "This is just a running number"
+            tests:
+             - unique
+             - not_null
+                
+      - name: raw_orders
+      - name: raw_payments
+      - name: events_dt_snapshot
+        description: This is a test table        
+        columns:
+          - name: issue_id
+            tests:
+              - unique:
+                 severity: warn
+          - name: status
+            tests: 
+              - accepted_values:
+                 values: ['Started','In progress','Completed']
+      - name: source_freshness
+        loaded_at_field: created_at
+        freshness:
+          warn_after: {count: 12, period: minute}
+          filter: created_at > '2019-01-01'
+
+
+
+  
