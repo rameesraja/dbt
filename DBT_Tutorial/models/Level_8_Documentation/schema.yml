@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: customers
+    description: "This is stage view of customers"
+    columns:
+      - name: ID
+        description: "Unique Integer key"
+        tests:
+          - unique
+          - not_null
+  - name: payments
+    columns:
+      - name: payment_method
+        tests:
+          - accepted_values:
+             values: ['credit_card','coupon','bank_transfer','gift_card']
+      - name: order_id
+        tests:            
+          - relationships:
+             to: ref('stg_orders')
+             field: id
+             severity: error
+      - name: amount
+        tests:
+          - isNegative
+  - name: orders
+    description: '{{ doc("orders") }}'
+    tests:
+      - unique:
+         column_name: "concat(id,user_id)"
+         severity: warn

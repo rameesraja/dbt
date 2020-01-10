@@ -36,6 +36,8 @@ snapshots:
     post-hook: "grant select on {{ this }} to SYSADMIN"
 models:
   VBI_Training:
+
+    tags: "training"
       # Applies to all files under models/example/
     Level_1_How_To_Create_Models:
         materialized: view
@@ -45,18 +47,42 @@ models:
         materialized: view
         vars:
             my_model_variable : 'Model Variable'
+    Level_4_How_to_use_Seeds_Hooks_tags:
+        materialized: view
+        tags: ["events", "hourly"]
     Level_5_How_to_use_sources:
         materialized: view
     Level_6_Snapshot_and_Materializations:
         materialized: view
+    Level_7_Testing:
+        materialized: view
         
     vars:
-        my_package_variable : 'Package Variable'
+        my_global_variable : 'Global Variable'
+  
   vars:
-    my_global_variable: 'Global Variable'     
+    my_package_variable: 'Package Variable'     
 
+on-run-start:
+    #  - "{{ callProcedure() }}"
+     - "{{ printFlags() }}"
+    #  - "{{ jsonConversions() }}"
+    #  - "{{ UsingStatements() }}"
 # on-run-start:
-#      - "{{ callProcedure() }}"
-#      - "{{ printFlags() }}"
-#      - "{{ jsonConversions() }}"
-#      - "{{ UsingStatements() }}"
+#     - "create  table if not exists DBT_WORKSHOP_BATCH_1.RAMEES.audit_table(event_name text,event_timestamp timestamp,event_schema text,event_model text)"
+# on-run-end:
+#     - "{{log('success',True)}}"
+
+
+seeds:
+  VBI_Training:
+    enabled: true
+    schema: RAMEES
+    quote_columns: False
+    # This configures data/country.csv
+    Country:
+    
+      # Override column types
+      column_types:
+        Country_Code: varchar(10)
+        Country: varchar(32)
