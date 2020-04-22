@@ -1,5 +1,11 @@
-{{ config(materialized='table') }}
-{{ config(database='DBT_WORKSHOP_BATCH_1') }}
-{{ config(schema='SHAHUL') }}
+
+
+{{ config(
+    materialized='table',
+    database='dbt_training_1',
+    schema='jiwon',
+    alias ='myTable',
+    enabled =false
+)}}
 
 select 1 as dummy

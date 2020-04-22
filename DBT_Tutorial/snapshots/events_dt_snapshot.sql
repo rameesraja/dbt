@@ -2,7 +2,7 @@
 
 {{
     config(
-        target_database='DBT_WORKSHOP_BATCH_1',
+        target_database='DBT_TRAINING_1',
         target_schema='RAMEES',
         unique_key='issue_id',
         strategy ='timestamp',

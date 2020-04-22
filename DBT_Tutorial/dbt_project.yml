@@ -7,7 +7,7 @@ version: '1.0'
 
 # This setting configures which "profile" dbt uses for this project. Profiles contain
 # database connection information, and should be configured in the  ~/.dbt/profiles.yml file
-profile: 'vbi_training'
+profile: 'default'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that source models can be found
@@ -44,12 +44,14 @@ models:
     Level_2_How_To_Create_Models_Using_Macros:
         materialized: view
     Level_3_How_to_use_Jinja_statements:
+        enabled: true
         materialized: view
         vars:
             my_model_variable : 'Model Variable'
     Level_4_How_to_use_Seeds_Hooks_tags:
         materialized: view
         tags: ["events", "hourly"]
+        post-hook: "grant select on {{ this }} to SYSADMIN"
     Level_5_How_to_use_sources:
         materialized: view
     Level_6_Snapshot_and_Materializations:
@@ -58,10 +60,10 @@ models:
         materialized: view
         
     vars:
-        my_global_variable : 'Global Variable'
+        my_package_variable : 'package Variable'
   
   vars:
-    my_package_variable: 'Package Variable'     
+    my_global_variable: 'global Variable'     
 
 on-run-start:
     #  - "{{ callProcedure() }}"

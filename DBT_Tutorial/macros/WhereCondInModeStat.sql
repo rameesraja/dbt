@@ -1,3 +1,3 @@
-{%macro  where()%}
+{% macro  where() %}
 where status = 'returned'
-{%endmacro%}
+{% endmacro %}

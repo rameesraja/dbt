@@ -4,9 +4,9 @@
 {% endif %}
 
 select order_id,
-{% for payment_method in payment_methods %}
+{%- for payment_method in payment_methods -%}
 sum( case when payment_method='{{payment_method}}' then amount else 0 end) as {{payment_method}}_mode,
-{% endfor %}
+{% endfor -%}
 sum(amount) as total_amount
 from raw_payments
 group by 1

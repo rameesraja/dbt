@@ -1,1 +1,1 @@
-select * from {{ source('RAMEES','raw_customers')}}
+select * from {{ source('mysource','raw_customers')}}
