@@ -7,7 +7,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'default'
+profile: 'ccbcc_vbi'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -32,6 +32,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
+  pre-hook: "{{ log_model_start_event() }}"
+  post-hook: "{{ log_model_end_event() }}"
   my_new_project:
       # Applies to all files under models/example/
       stage:
@@ -54,4 +56,8 @@ models:
             +tags:
                 - "facts"
 
+
+on-run-start:
+  - "{{ create_audit_schema() }}"
+  - "{{ create_audit_log_table() }}"
 
