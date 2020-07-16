@@ -1,10 +1,9 @@
 {{
     config
     (
-        materialized = 'incremental',
-        unique_key = 'material_id',
+        materialized = 'incremental_v2',
+        unique_key = ['material_id','material_name'],
         tags = ['sales','manu']
-
     )
     
 }}

@@ -32,8 +32,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  pre-hook: "{{ log_model_start_event() }}"
-  post-hook: "{{ log_model_end_event() }}"
+  #pre-hook: "{{ log_model_start_event() }}"
+  #post-hook: "{{ log_model_end_event() }}"
   my_new_project:
       # Applies to all files under models/example/
       stage:
@@ -57,7 +57,7 @@ models:
                 - "facts"
 
 
-on-run-start:
-  - "{{ create_audit_schema() }}"
-  - "{{ create_audit_log_table() }}"
+#on-run-start:
+#  - "{{ create_audit_schema() }}"
+#  - "{{ create_audit_log_table() }}"
 

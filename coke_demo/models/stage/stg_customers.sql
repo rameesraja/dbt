@@ -1,7 +1,8 @@
 {{
     config(
         
-        tags = ['sales']
+        tags = ['sales'],
+        alias = 'customers'
     )
 }}
 
